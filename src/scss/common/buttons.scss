@@ -1,0 +1,29 @@
+.btn {
+  display: inline-block;
+  padding: 32px;
+  line-height: 120%;
+  cursor: pointer;
+  border-radius: 2px;
+  border: none;
+  transition:
+    color .3s ease,
+    background-color .3s ease,
+    transform .3s ease,
+    border-color .3s ease;
+}
+
+.btnGreen {
+  background-color:$brand-green;
+  color: #fff;
+}
+
+.btnWhite {
+  background-color:#fff;
+  color: $brand-green;
+}
+
+button {
+  cursor: pointer;
+  border:none;
+  background-color: transparent;
+}
