@@ -4,7 +4,7 @@
   line-height: 120%;
   cursor: pointer;
   border-radius: 2px;
-  border: none;
+  border: 2px solid transparent;
   transition:
     color .3s ease,
     background-color .3s ease,
@@ -15,6 +15,14 @@
 .btnGreen {
   background-color:$brand-green;
   color: #fff;
+  &:hover {
+    background-color:#fff;
+    color: $brand-green;
+    border-color: $brand-green;
+  }
+  &:active {
+    transform: translateY(3px);
+  }
 }
 
 .btnWhite {
