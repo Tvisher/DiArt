@@ -255,6 +255,10 @@ li {
   flex-direction: column;
   align-items: flex-start;
   margin-right: 28px;
+  a {
+    font-weight: 500;
+    color: #4E5D78;
+  }
 }
 .header__nav-bottom,
 .header__nav-top {
@@ -1585,6 +1589,10 @@ li {
 }
 
 @media (max-width: 414px) {
+  .ours-clients__list .ours-clients__item:nth-child(n+3) {
+    margin-top: -10vw;
+    flex: 0 0 34%;
+  }
   .menu-nav {
     margin-bottom: 10px;
   }
@@ -2087,11 +2095,17 @@ li {
   padding: 30px 0 0;
 }
 .about-section__poster {
+  &:hover {
+    img {
+      transform: scale(1.2);
+    }
+  }
   width: 100%;
   height: 400px;
   border-radius: 4px;
   overflow: hidden;
   img {
+    transition: transform 1.4s ease-in-out;
     width: 100%;
     height: 100%;
     object-fit: cover;
