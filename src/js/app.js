@@ -1,18 +1,26 @@
 'use strict';
 import * as baseFunction from './modules/functions.js';
 import './vendors/vendors.js';
-import ModalVideo from 'modal-video';
+// import ModalVideo from 'modal-video';
 import Swiper, {
     Navigation,
-    Pagination,
+    // Pagination,
     EffectFade,
     Autoplay,
-    Thumbs,
-    Mousewheel
+    // Thumbs,
+    // Mousewheel
 } from 'swiper';
 
 // Проверка поддержки webP
 baseFunction.testWebP();
+//получаем ширину полоски скрола
+const scrollLineWigth = baseFunction.scrollbarWidth();
+
+// Маска для инпутов с номером телефона
+const phoneInputs = document.querySelectorAll('input[type=tel]');
+phoneInputs.forEach(input => {
+    $(input).mask("+7 (999) 999-99-99");
+});
 
 
 const sliderSpinerData = () => {
@@ -63,7 +71,7 @@ const mainSlider = new Swiper('.main-screen__slider', {
 });
 
 const teasersSlider = new Swiper('.teasers__slider', {
-    modules: [Navigation, EffectFade, Autoplay],
+    modules: [Navigation, Autoplay],
     speed: 900,
     loop: true,
     autoplay: {
@@ -122,6 +130,31 @@ const ourDestinationsSlider = new Swiper('.our-destinations__slider', {
     on: sliderSpinerData(),
 });
 
+const articlesSlider = new Swiper('.articles__slider', {
+    modules: [Navigation, Autoplay],
+    speed: 900,
+    loop: true,
+    autoplay: {
+        delay: 4000,
+    },
+    slidesPerView: 1,
+    spaceBetween: 10,
+    breakpoints: {
+        980: {
+            slidesPerView: 3,
+            spaceBetween: 30
+        },
+        768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+        },
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    on: sliderSpinerData(),
+});
 
 let modalsBtns = document.querySelectorAll('[data-modal-open]');
 let modalsContent = [...document.querySelectorAll('[data-modal-content]')];
@@ -157,5 +190,22 @@ openMenuBtn.addEventListener('click', (e) => {
     unvisibleHeaderContent.style.height = `calc(100vh - ${headerShowContent.clientHeight}px)`;
     openMenuBtn.classList.toggle('show');
     header.classList.toggle('menu-open');
-    // document.body.classList.toggle('hidden');
-})
+    document.body.classList.toggle('hidden');
+    if (!document.body.classList.contains('hidden')) {
+        document.body.style.paddingRight = "0px";
+    } else {
+        document.body.style.paddingRight = `${scrollLineWigth}px`;
+
+    }
+});
+
+
+//Кнопка показать ещё список партнёров
+const showMoreBtn = document.querySelector('#show-all-clients');
+if (showMoreBtn) {
+    showMoreBtn.onclick = (e) => {
+        document.querySelector('#ours-clients__list').classList.add('show');
+        showMoreBtn.classList.add('hide');
+    };
+}
+
