@@ -1,13 +1,7 @@
 @@include('./html/head.html')
 @@include('./html/header.html')
-<section class="breadcrumps">
-    <div class="container">
-        <ul class="breadcrumps__list">
-            <li><a href="#">Крошки</a></li>
-            <li><a href="#">Текущая страница</a></li>
-        </ul>
-    </div>
-</section>
+@@include('./html/breadcrumps.html')
+
 <section class="welcome">
     <div class="container">
         <div class="welcome__wrapper">
@@ -117,6 +111,9 @@
     </div>
 </section>
 <section class="info-block">
+    <div class="ours-clients__bg-img">
+        <img src="@img/ribbon.png" alt="">
+    </div>
     <div class="container">
         <div class="info-block__wrapper">
             <div class="info-block__img">
@@ -133,6 +130,9 @@
     </div>
 </section>
 <section class="articles">
+    <div class="featured-products__bg-img">
+        <img src="@img/pliers.png" alt="">
+    </div>
     <div class="container">
         <div class="section-title">
             <span class="section-title__nameplate">Последние новости</span>
