@@ -1,4 +1,6 @@
-@@include('./html/head.html')
+@@include('./html/head.html',{
+"title": "Главная"
+})
 @@include('./html/header.html')
 
 <body>
@@ -352,7 +354,7 @@
             </div>
         </section>
         @@include('./html/clients.html')
-        <section class="our-destinations">
+        <section class="our-destinations" id="our-destinations">
             <div class="container">
                 <div class="section-title">
                     <span class="section-title__nameplate">Наши бренды</span>
@@ -465,7 +467,6 @@
             </div>
         </section>
         <section class="featured-products">
-
             <div class="container">
                 <div class="section-title">
                     <span class="section-title__nameplate">Наши продукты</span>

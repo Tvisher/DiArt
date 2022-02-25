@@ -1,20 +1,19 @@
 'use strict';
 import * as baseFunction from './modules/functions.js';
 import './vendors/vendors.js';
-// import ModalVideo from 'modal-video';
 import Swiper, {
     Navigation,
-    // Pagination,
     EffectFade,
     Autoplay,
-    // Thumbs,
-    // Mousewheel
 } from 'swiper';
+
 
 // Проверка поддержки webP
 baseFunction.testWebP();
+
 //получаем ширину полоски скрола
 const scrollLineWigth = baseFunction.scrollbarWidth();
+
 
 // Маска для инпутов с номером телефона
 const phoneInputs = document.querySelectorAll('input[type=tel]');
@@ -22,7 +21,7 @@ phoneInputs.forEach(input => {
     $(input).mask("+7 (999) 999-99-99");
 });
 
-
+// настройка коррекной работы спинера с анимацией autoplay в слайдерах
 const sliderSpinerData = () => {
     return {
         init(e) {
@@ -156,9 +155,10 @@ const articlesSlider = new Swiper('.articles__slider', {
     on: sliderSpinerData(),
 });
 
+
+// Модальные окна секции с сотами
 let modalsBtns = document.querySelectorAll('[data-modal-open]');
 let modalsContent = [...document.querySelectorAll('[data-modal-content]')];
-
 modalsBtns.forEach(btn => {
     btn.addEventListener("click", (e) => {
         const modalId = btn.dataset.modalOpen;
@@ -167,7 +167,6 @@ modalsBtns.forEach(btn => {
     });
 
 });
-
 document.addEventListener('click', (e) => {
     const closeModalBtn = e.target.closest('[data-close-btn]');
     if (closeModalBtn) {
@@ -181,7 +180,7 @@ document.addEventListener('click', (e) => {
 
 
 
-// Логика работы меню
+// Логика работы выпадающего меню
 const openMenuBtn = document.querySelector('[data-open-menu]');
 const header = document.querySelector('#header');
 const unvisibleHeaderContent = header.querySelector('.header__unvisible');
@@ -195,7 +194,6 @@ openMenuBtn.addEventListener('click', (e) => {
         document.body.style.paddingRight = "0px";
     } else {
         document.body.style.paddingRight = `${scrollLineWigth}px`;
-
     }
 });
 
@@ -208,4 +206,18 @@ if (showMoreBtn) {
         showMoreBtn.classList.add('hide');
     };
 }
+
+// Действие при нажатии на ссылки в открытом меню
+const munuLinks = document.querySelectorAll('[data-close-menu]');
+munuLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        if (header.classList.contains('menu-open')) {
+            openMenuBtn.classList.remove('show');
+            header.classList.remove('menu-open');
+            document.body.classList.remove('hidden');
+            document.body.style.paddingRight = "0px";
+        }
+    });
+});
+
 
