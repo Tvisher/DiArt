@@ -15,7 +15,8 @@
   "dependencies": {
     "gulp-cli": "^2.3.0",
     "jquery": "^3.6.0",
-    "modal-video": "^2.4.6"
+    "modal-video": "^2.4.6",
+    "wow.js": "^1.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.10",

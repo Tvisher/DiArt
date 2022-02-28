@@ -13,8 +13,8 @@ export function testWebP() {
 };
 
 export function scrollbarWidth() {
-    var documentWidth = parseInt(document.documentElement.clientWidth);
-    var windowsWidth = parseInt(window.innerWidth);
-    var scrollbarWidth = windowsWidth - documentWidth;
+    let documentWidth = parseInt(document.documentElement.clientWidth);
+    let windowsWidth = parseInt(window.innerWidth);
+    let scrollbarWidth = windowsWidth - documentWidth;
     return Number(scrollbarWidth);
 }

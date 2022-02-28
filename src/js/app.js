@@ -7,6 +7,8 @@ import Swiper, {
     Autoplay,
 } from 'swiper';
 
+import WOW from 'wow.js';
+
 
 // Проверка поддержки webP
 baseFunction.testWebP();
@@ -53,15 +55,15 @@ const sliderSpinerData = () => {
 
 const mainSlider = new Swiper('.main-screen__slider', {
     modules: [Navigation, EffectFade, Autoplay],
-    speed: 300,
+    speed: 800,
     loop: true,
     autoplay: {
         delay: 6000,
     },
-    effect: 'fade',
-    fadeEffect: {
-        crossFade: true
-    },
+    // effect: 'fade',
+    // fadeEffect: {
+    //     crossFade: true
+    // },
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -220,4 +222,22 @@ munuLinks.forEach(link => {
     });
 });
 
+
+
+
+
+var wow = new WOW({
+    boxClass: 'wow',      // animated element css class (default is wow)
+    animateClass: 'animate__animated', // animation css class (default is animated)
+    offset: 20,          // distance to the element when triggering the animation (default is 0)
+    mobile: true,       // trigger animations on mobile devices (default is true)
+    live: true,       // act on asynchronously loaded content (default is true)
+    callback: function (box) { },
+    scrollContainer: null,    // optional scroll container selector, otherwise use window,
+    resetAnimation: true,     // reset animation on end (default is true)
+});
+
+window.addEventListener('load', (e) => {
+    wow.init();
+})
 
