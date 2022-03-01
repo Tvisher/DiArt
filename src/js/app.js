@@ -17,6 +17,18 @@ baseFunction.testWebP();
 const scrollLineWigth = baseFunction.scrollbarWidth();
 
 
+const wow = new WOW({
+    boxClass: 'wow',      // animated element css class (default is wow)
+    animateClass: 'animate__animated', // animation css class (default is animated)
+    offset: 50,          // distance to the element when triggering the animation (default is 0)
+    mobile: true,       // trigger animations on mobile devices (default is true)
+    live: true,       // act on asynchronously loaded content (default is true)
+    callback: function (box) { },
+    scrollContainer: null,    // optional scroll container selector, otherwise use window,
+    resetAnimation: true,     // reset animation on end (default is true)
+});
+window.addEventListener('load', (e) => wow.init());
+
 // Маска для инпутов с номером телефона
 const phoneInputs = document.querySelectorAll('input[type=tel]');
 phoneInputs.forEach(input => {
@@ -157,7 +169,6 @@ const articlesSlider = new Swiper('.articles__slider', {
     on: sliderSpinerData(),
 });
 
-
 // Модальные окна секции с сотами
 let modalsBtns = document.querySelectorAll('[data-modal-open]');
 let modalsContent = [...document.querySelectorAll('[data-modal-content]')];
@@ -180,8 +191,6 @@ document.addEventListener('click', (e) => {
     }
 });
 
-
-
 // Логика работы выпадающего меню
 const openMenuBtn = document.querySelector('[data-open-menu]');
 const header = document.querySelector('#header');
@@ -198,7 +207,6 @@ openMenuBtn.addEventListener('click', (e) => {
         document.body.style.paddingRight = `${scrollLineWigth}px`;
     }
 });
-
 
 //Кнопка показать ещё список партнёров
 const showMoreBtn = document.querySelector('#show-all-clients');
@@ -217,27 +225,10 @@ munuLinks.forEach(link => {
             openMenuBtn.classList.remove('show');
             header.classList.remove('menu-open');
             document.body.classList.remove('hidden');
-            document.body.style.paddingRight = "0px";
+            document.body.style.paddingRight = '0px';
         }
     });
 });
 
 
-
-
-
-var wow = new WOW({
-    boxClass: 'wow',      // animated element css class (default is wow)
-    animateClass: 'animate__animated', // animation css class (default is animated)
-    offset: 20,          // distance to the element when triggering the animation (default is 0)
-    mobile: true,       // trigger animations on mobile devices (default is true)
-    live: true,       // act on asynchronously loaded content (default is true)
-    callback: function (box) { },
-    scrollContainer: null,    // optional scroll container selector, otherwise use window,
-    resetAnimation: true,     // reset animation on end (default is true)
-});
-
-window.addEventListener('load', (e) => {
-    wow.init();
-})
 
