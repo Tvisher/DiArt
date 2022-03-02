@@ -16,19 +16,6 @@ baseFunction.testWebP();
 //получаем ширину полоски скрола
 const scrollLineWigth = baseFunction.scrollbarWidth();
 
-
-const wow = new WOW({
-    boxClass: 'wow',      // animated element css class (default is wow)
-    animateClass: 'animate__animated', // animation css class (default is animated)
-    offset: 50,          // distance to the element when triggering the animation (default is 0)
-    mobile: true,       // trigger animations on mobile devices (default is true)
-    live: true,       // act on asynchronously loaded content (default is true)
-    callback: function (box) { },
-    scrollContainer: null,    // optional scroll container selector, otherwise use window,
-    resetAnimation: true,     // reset animation on end (default is true)
-});
-window.addEventListener('load', (e) => wow.init());
-
 // Маска для инпутов с номером телефона
 const phoneInputs = document.querySelectorAll('input[type=tel]');
 phoneInputs.forEach(input => {
@@ -229,6 +216,87 @@ munuLinks.forEach(link => {
         }
     });
 });
+
+
+function writeText(classEl, speed, cb) {
+    const textWriteEl = document.querySelector(classEl);
+    const text = [textWriteEl.dataset.text];
+    let line = 0;
+    let count = 0;
+    let result = '';
+    function typeLine() {
+        let interval = setTimeout(
+            () => {
+                result += text[line][count]
+                document.querySelector(classEl).innerHTML = result + '|';
+                count++;
+                if (count >= text[line].length) {
+                    count = 0;
+                    line++;
+                    if (line == text.length) {
+                        clearTimeout(interval);
+                        document.querySelector(classEl).innerHTML = result;
+                        setTimeout(() => {
+                            cb && cb();
+                        }, 300);
+                        return true;
+                    }
+                }
+                typeLine();
+            }, getRandomInt(getRandomInt(speed * 2.5)));
+    }
+    typeLine();
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
+
+function outNum(num, elem, step, time) {
+    let e = elem,
+        n = Math.round(num - 250);
+    let interval = setInterval(() => {
+        n = n + step;
+        if (n == num) {
+            clearInterval(interval);
+        }
+        e.innerHTML = n;
+    }, time);
+}
+
+
+
+const wow = new WOW({
+    boxClass: 'wow',      // animated element css class (default is wow)
+    animateClass: 'animate__animated', // animation css class (default is animated)
+    offset: 50,          // distance to the element when triggering the animation (default is 0)
+    mobile: true,       // trigger animations on mobile devices (default is true)
+    live: true,       // act on asynchronously loaded content (default is true)
+    callback: function (box) {
+        if (box.classList.contains('main-screen__title')) {
+            setTimeout(() => {
+                writeText('.main-screen__title', 220, () => { writeText('.main-screen__desc', 100) });
+            }, 1050);
+        }
+        if (box.classList.contains('ours-clients__block')) {
+            document.querySelectorAll('.counter__el').forEach((element) => {
+                const iterableNum = +element.textContent;
+                outNum(iterableNum, element, 1, 7);
+            });
+        }
+    },
+    scrollContainer: null,    // optional scroll container selector, otherwise use window,
+    resetAnimation: true,     // reset animation on end (default is true)
+});
+
+window.addEventListener('load', (e) => {
+    wow.init();
+});
+
+
+
+
 
 
 
