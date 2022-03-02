@@ -793,45 +793,45 @@ section {
         fill: $brand-green;
       }
       .list-item__hexagon svg {
-        animation: boxShadowAnimation 3s ease-in-out infinite 0s;
-        // animation: rotateElem 20s linear infinite 0s;
-
+        animation: rotateElem 8s ease-in-out infinite forwards 1.6s;
       }
-
+  
       .bgi {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
         z-index: 1;
+        animation: boxScaleAnimation 5s ease-in-out infinite forwards 1.6s;
+
       }
     } 
   }
 }
 
-@keyframes boxShadowAnimation {
+// .suppliers__item.animate__animated {
+
+// }
+
+@keyframes boxScaleAnimation {
   0% {
-        filter: drop-shadow(0px 5px 19px rgba(69, 73, 86, 0.15));
-  }
+    transform: scale(1) translate(-50%,-50%);  }
   50% {
-        filter: drop-shadow(0px 5px 19px rgba(69, 73, 86, 1));
-  }
+    transform: scale(1.1) translate(-50%,-50%);  }
   100% {
-        filter: drop-shadow(0px 5px 19px rgba(69, 73, 86, 0.15));
-  }
+    transform: scale(1) translate(-50%,-50%);  }
 }
 
 
 @keyframes rotateElem {
   0% {
-    transform: rotate(0);
-    
+    transform: rotate(0) scale(1);
   }
   50% {
-      transform: rotate(360deg);
+    transform: rotate(180deg) scale(0.8);
   }
   100% {
-      transform: rotate(0);
+    transform: rotate(360deg) scale(1);
   }
 }
 
