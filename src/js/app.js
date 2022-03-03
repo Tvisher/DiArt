@@ -22,6 +22,8 @@ phoneInputs.forEach(input => {
     $(input).mask("+7 (999) 999-99-99");
 });
 
+
+
 // настройка коррекной работы спинера с анимацией autoplay в слайдерах
 const sliderSpinerData = () => {
     return {
@@ -217,7 +219,7 @@ munuLinks.forEach(link => {
     });
 });
 
-
+// Функция, описывающая самоснаписание заголовка на главной странице  
 function writeText(classEl, speed, cb) {
     const textWriteEl = document.querySelector(classEl);
     const text = [textWriteEl.dataset.text];
@@ -252,25 +254,34 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-
+// Счётчики секции с клиентами
 function outNum(num, elem, step, time) {
     let e = elem,
         n = Math.round(num - 250);
+    let timerInterval = time;
     let interval = setInterval(() => {
         n = n + step;
-        if (n == num) {
+        if (n == num - 15) {
             clearInterval(interval);
+            let lowTimerInterval = time * 12;
+            let lowInterval = setInterval(() => {
+                n = n + step;
+                if (n == num) {
+                    clearInterval(lowInterval);
+                }
+                e.innerHTML = n;
+            }, lowTimerInterval);
         }
         e.innerHTML = n;
-    }, time);
+    }, timerInterval);
 }
 
 
-
+// Класс описывающий появление анимаций
 const wow = new WOW({
     boxClass: 'wow',      // animated element css class (default is wow)
     animateClass: 'animate__animated', // animation css class (default is animated)
-    offset: 50,          // distance to the element when triggering the animation (default is 0)
+    offset: 10,          // distance to the element when triggering the animation (default is 0)
     mobile: true,       // trigger animations on mobile devices (default is true)
     live: true,       // act on asynchronously loaded content (default is true)
     callback: function (box) {
@@ -280,10 +291,12 @@ const wow = new WOW({
             }, 1050);
         }
         if (box.classList.contains('ours-clients__block')) {
-            document.querySelectorAll('.counter__el').forEach((element) => {
-                const iterableNum = +element.textContent;
-                outNum(iterableNum, element, 1, 7);
-            });
+            setTimeout(() => {
+                document.querySelectorAll('.counter__el').forEach((element, index) => {
+                    const iterableNum = +element.textContent;
+                    outNum(iterableNum, element, 1, 7 + index);
+                });
+            }, 1000);
         }
     },
     scrollContainer: null,    // optional scroll container selector, otherwise use window,
@@ -295,8 +308,51 @@ window.addEventListener('load', (e) => {
 });
 
 
+// обьявление паралакс элементов
+const scenes = document.querySelectorAll('.paralax-container');
+scenes.forEach(scene => {
+    let parallaxInstance = new Parallax(scene);
+})
 
 
+// Кнопка проматать к началу страницы
+const scrollToTop = document.querySelector('#scroll-to-top');
+window.addEventListener("scroll", (e) => {
+    console.log();
+    if (window.pageYOffset > 300) {
+        scrollToTop.classList.add('show');
+    } else {
+        scrollToTop.classList.remove('show');
+    }
+});
+$(scrollToTop).click(function () {
+    $("html, body").animate({ scrollTop: 0 }, "fast");
+    return false;
+});
+
+// Плавный скролл на сайте
+SmoothScroll({
+    // Время скролла 400 = 0.4 секунды
+    animationTime: 500,
+    // Размер шага в пикселях 
+    stepSize: 75,
+    // Ускорение 
+    accelerationDelta: 100,
+    // Максимальное ускорение
+    accelerationMax: 2,
+
+    // Поддержка клавиатуры
+    keyboardSupport: true,
+    // Шаг скролла стрелками на клавиатуре в пикселях
+    arrowScroll: 50,
+    // Pulse (less tweakable)
+    // ratio of "tail" to "acceleration"
+    pulseAlgorithm: true,
+    pulseScale: 4,
+    pulseNormalize: 1,
+    // Поддержка тачпада
+    touchpadSupport: true,
+})
 
 
 
