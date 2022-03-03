@@ -352,7 +352,4 @@ SmoothScroll({
     pulseNormalize: 1,
     // Поддержка тачпада
     touchpadSupport: true,
-})
-
-
-
+});
