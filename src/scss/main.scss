@@ -171,6 +171,11 @@ section {
   }
 }
 
+.wow {
+  visibility: hidden;
+  will-change: transform;
+}
+
 .header,
 .header__unvisible {
   transition: background-color .3s ease, transform .8s ease, box-shadow .3s ease;
@@ -2099,7 +2104,9 @@ section {
      }
   }
 }
-.welcome__image {
+.welcome__image,
+.info-block__img {
+  transition: box-shadow .3s ease-in-out, transform .3s ease-in-out;
   max-height: 540px;
   height: 100%;
   box-shadow: 15px 15px 0px 0px $brand-green;
@@ -2108,7 +2115,7 @@ section {
     height: 100%;
     object-fit: cover;
     object-position: center;
-  } 
+  }
 }
 
 
@@ -2732,12 +2739,14 @@ section {
   padding: 30px 0;
   position: relative;
   .featured-products__bg-img {
-    top: 20%;
+    top: 35%;
     transform: none;
+    right: -5%;
   }
   .ours-clients__bg-img {
-    top: 90%;
-    transform: translateY(-50%);
+    top: 0%;
+    left: -10%;
+    // transform: translateY(-50%);
   }
 }
 
@@ -2759,6 +2768,7 @@ section {
   justify-content: space-between;
 }
 .news-and-articles__tag {
+
   &.active {
     background-color: #C0DFF1;
   }
@@ -2766,7 +2776,6 @@ section {
   padding: 8px 24px;
   border-radius: 4px;
   font-size: 12px;
-
   color:#00649C;
   background-color:transparent;
   border: 2px solid #C0DFF1;
@@ -2812,6 +2821,7 @@ section {
   flex:0 0 33.33%;
   padding: 15px;
   .list-item__wrapper {
+    background-color: #fff;
     padding: 30px;
     border: $border-base;
     border-radius:4px;

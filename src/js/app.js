@@ -281,7 +281,7 @@ function outNum(num, elem, step, time) {
 const wow = new WOW({
     boxClass: 'wow',      // animated element css class (default is wow)
     animateClass: 'animate__animated', // animation css class (default is animated)
-    offset: 10,          // distance to the element when triggering the animation (default is 0)
+    offset: 0,          // distance to the element when triggering the animation (default is 0)
     mobile: true,       // trigger animations on mobile devices (default is true)
     live: true,       // act on asynchronously loaded content (default is true)
     callback: function (box) {
@@ -312,7 +312,7 @@ window.addEventListener('load', (e) => {
 const scenes = document.querySelectorAll('.paralax-container');
 scenes.forEach(scene => {
     let parallaxInstance = new Parallax(scene);
-})
+});
 
 
 // Кнопка проматать к началу страницы
